@@ -3,35 +3,42 @@ from room import Room
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "foyer": Room(
+        "Foyer",
+        """Dim light filters in from the south. Dusty
+passages run north and east.""",
+    ),
+    "overlook": Room(
+        "Grand Overlook",
+        """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+the distance, but there is no way across the chasm.""",
+    ),
+    "narrow": Room(
+        "Narrow Passage",
+        """The narrow passage bends here from west
+to north. The smell of gold permeates the air.""",
+    ),
+    "treasure": Room(
+        "Treasure Chamber",
+        """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+    ),
 }
 
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room["outside"].n_to = room["foyer"]
+room["foyer"].s_to = room["outside"]
+room["foyer"].n_to = room["overlook"]
+room["foyer"].e_to = room["narrow"]
+room["overlook"].s_to = room["foyer"]
+room["narrow"].w_to = room["foyer"]
+room["narrow"].n_to = room["treasure"]
+room["treasure"].s_to = room["narrow"]
 
 #
 # Main
@@ -49,3 +56,61 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+currentRoom = "outside"
+
+print(room["outside"])
+user = input("[n] North  [e] East  [s] South  [w] West    [q] Quit\n")
+
+
+while not user == "q":
+
+    # user chooses North
+    if user == "n":
+        if currentRoom == "outside":
+            print(room["foyer"])
+            currentRoom = "foyer"
+        elif currentRoom == "foyer":
+            print(room["overlook"])
+            currentRoom = "overlook"
+        elif currentRoom == "narrow":
+            print(room["treasure"])
+            currentRoom = "treasure"
+        else:
+            print("Travel in this direction is impossible, choose again adventurer")
+
+    # user chooses East
+    elif user == "e":
+        if currentRoom == "foyer":
+            print(room["narrow"])
+            currentRoom = "narrow"
+        else:
+            print("Travel in this direction is impossible, choose again adventurer")
+
+    # user chooses South
+    elif user == "s":
+        if currentRoom == "foyer":
+            print(room["outside"])
+            currentRoom = "outside"
+        elif currentRoom == "overlook":
+            print(room["foyer"])
+            currentRoom = "foyer"
+        elif currentRoom == "treasure":
+            print(room["narrow"])
+            currentRoom = "narrow"
+        else:
+            print("Travel in this direction is impossible, choose again adventurer")
+
+    # user chooses West
+    elif user == "w":
+        if currentRoom == "narrow":
+            print(room["foyer"])
+            currentRoom = "foyer"
+        else:
+            print("Travel in this direction is impossible, choose again adventurer")
+    else:
+        print(f"{user}? What kind of direction is that? Choose again.")
+
+    print("Where to?")
+    user = input("[n] North  [e] East  [s] South  [w] West    [q] Quit\n")
+
