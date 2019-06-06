@@ -12,4 +12,6 @@ class Player:
         return f"{self.name}, {self.current_room}"
 
     def printItems(self):
-        print(f"Items in Room: {self.items}")
+        print(f"Items in Player Inventory:")
+        for item in self.items:
+            print(f"{item}")
