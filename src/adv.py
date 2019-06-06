@@ -57,7 +57,7 @@ room["treasure"].s_to = room["narrow"]
 #
 # If the user enters "q", quit the game.
 
-currentRoom = "outside"
+currentRoom = room["outside"]
 
 print(room["outside"])
 user = input("[n] North  [e] East  [s] South  [w] West    [q] Quit\n")
@@ -67,47 +67,35 @@ while not user == "q":
 
     # user chooses North
     if user == "n":
-        if currentRoom == "outside":
-            print(room["foyer"])
-            currentRoom = "foyer"
-        elif currentRoom == "foyer":
-            print(room["overlook"])
-            currentRoom = "overlook"
-        elif currentRoom == "narrow":
-            print(room["treasure"])
-            currentRoom = "treasure"
-        else:
+        if currentRoom.n_to == None:
             print("Travel in this direction is impossible, choose again adventurer")
+        else:
+            currentRoom = currentRoom.n_to
+            print(currentRoom)
 
     # user chooses East
     elif user == "e":
-        if currentRoom == "foyer":
-            print(room["narrow"])
-            currentRoom = "narrow"
-        else:
+        if currentRoom.e_to == None:
             print("Travel in this direction is impossible, choose again adventurer")
+        else:
+            currentRoom = currentRoom.e_to
+            print(currentRoom)
 
     # user chooses South
     elif user == "s":
-        if currentRoom == "foyer":
-            print(room["outside"])
-            currentRoom = "outside"
-        elif currentRoom == "overlook":
-            print(room["foyer"])
-            currentRoom = "foyer"
-        elif currentRoom == "treasure":
-            print(room["narrow"])
-            currentRoom = "narrow"
-        else:
+        if currentRoom.s_to == None:
             print("Travel in this direction is impossible, choose again adventurer")
+        else:
+            currentRoom = currentRoom.s_to
+            print(currentRoom)
 
     # user chooses West
     elif user == "w":
-        if currentRoom == "narrow":
-            print(room["foyer"])
-            currentRoom = "foyer"
-        else:
+        if currentRoom.w_to == None:
             print("Travel in this direction is impossible, choose again adventurer")
+        else:
+            currentRoom = currentRoom.w_to
+            print(currentRoom)
     else:
         print(f"{user}? What kind of direction is that? Choose again.")
 
