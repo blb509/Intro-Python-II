@@ -15,3 +15,5 @@ class Room:
     def __str__(self):
         return f"{self.name}, {self.description}"
 
+    def printItems(self):
+        print(f"Items in Room: {self.items}")

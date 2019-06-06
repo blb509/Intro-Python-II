@@ -72,6 +72,7 @@ while not user == "q":
         else:
             currentRoom = currentRoom.n_to
             print(currentRoom)
+            currentRoom.printItems()
 
     # user chooses East
     elif user == "e":
@@ -80,6 +81,7 @@ while not user == "q":
         else:
             currentRoom = currentRoom.e_to
             print(currentRoom)
+            currentRoom.printItems()
 
     # user chooses South
     elif user == "s":
@@ -88,7 +90,7 @@ while not user == "q":
         else:
             currentRoom = currentRoom.s_to
             print(currentRoom)
-
+            currentRoom.printItems()
     # user chooses West
     elif user == "w":
         if currentRoom.w_to == None:
@@ -96,6 +98,8 @@ while not user == "q":
         else:
             currentRoom = currentRoom.w_to
             print(currentRoom)
+            currentRoom.printItems()
+
     else:
         print(f"{user}? What kind of direction is that? Choose again.")
 
