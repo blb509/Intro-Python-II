@@ -1,4 +1,6 @@
 from room import Room
+from item import Item
+from player import Player
 
 # Declare all the rooms
 
@@ -39,6 +41,24 @@ room["overlook"].s_to = room["foyer"]
 room["narrow"].w_to = room["foyer"]
 room["narrow"].n_to = room["treasure"]
 room["treasure"].s_to = room["narrow"]
+
+chair = Item(
+    "chair", " very heavy chair made of bricks, would not want to carry this around"
+)
+french_bread = Item(
+    "french bread", "hmm perhaps this has something to do with the room?"
+)
+rope = Item("short rope", "not long enough to use")
+chapstick = Item(
+    "brand new expensive chapstick", "someone is going to be mad they dropped this"
+)
+coin = Item("gold coin", "wait....this is made of chocolate")
+
+room["foyer"].items.append(chair)
+room["foyer"].items.append(french_bread)
+room["overlook"].items.append(rope)
+room["narrow"].items.append(chapstick)
+room["treasure"].items.append(coin)
 
 #
 # Main

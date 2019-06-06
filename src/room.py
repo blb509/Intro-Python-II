@@ -16,4 +16,6 @@ class Room:
         return f"{self.name}, {self.description}"
 
     def printItems(self):
-        print(f"Items in Room: {self.items}")
+        print(f"Items in Room:")
+        for item in self.items:
+            print(f"{item}")
